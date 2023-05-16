@@ -1,0 +1,33 @@
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .header-content img {
+    max-height: 80px;
+    margin-right: 10px;
+  }
+  
+  .display-4 {
+    font-size: 4rem;
+    margin: 0;
+  }
+  
+  .lead {
+    font-size: 1.5rem;
+  }
+  .heading {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+        text-shadow: 2px 2px #ddd;
+        text-align: center;
+  }
+  
+  .subheading {
+    font-size: 1.5rem;
+    color: #666;
+    text-shadow: 1px 1px #ddd;
+    text-align: center;
+  }  
