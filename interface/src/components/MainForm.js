@@ -14,22 +14,22 @@ export default function MainForm() {
   const handleSubmit = async () => {
     const textInput = document.getElementById('text');
     const value = textInput.value;
-    const data = {
-      text: value
-    };
+    const fileInput = document.getElementById('file');
+    const files = fileInput.files;
+    
+    const formData = new FormData();
+    formData.append('text', value);
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
   
     try {
-      const response =  await fetch('http://localhost:8080/api/form', {
+      const response = await fetch('http://localhost:8080/api/form', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: value
+        body: formData
       });
   
-     // const response = await fetch('http://localhost:8080/get');
       const responseData = await response.text();
-  
       setResponseMessage(responseData);
     } catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ export default function MainForm() {
         <label htmlFor="text">Saisir le texte :</label> <br />
         <textarea  id="text" name="text" rows={7} columns={9} /> <br/>
         {/* <FileInput /> */}
-        <input type='file'  ></input>
+        <input type='file' multiple="true" id='file' ></input>
         
         <button type="button" onClick={handleSubmit}>Comparer</button>
 
