@@ -39,25 +39,36 @@ public class PlagiarsmDetectionApplication {
 			System.out.println(text);
 
 			// Send results
-			return handleGetRequest(text);
+			return handleGetRequest(text,"is good");
 		}
 
 		@GetMapping("/get")
-		public String handleGetRequest(String text) {
+		public String handleGetRequest(String text,String t2) {
 			// Process the GET request and obtain the result
-			System.out.println("get");
-			ApiResponse result = new ApiResponse( "Your desired result");
+			System.out.println(text);
+			ApiResponse result = new ApiResponse(text,t2);
 
 
-			return result.getMessage();
+			return result.getMessage()+result.getT2();
 		}
 
 
 		public class ApiResponse {
 		private String message;
+		private String t2;
 
-		public ApiResponse(String message) {
+
+		public String getT2() {
+			return t2;
+		}
+
+		public void setT2(String t2) {
+			this.t2 = t2;
+		}
+
+		public ApiResponse(String message,String t2) {
 			this.message = message;
+			this.t2 = t2;
 		}
 
 		public String getMessage() {

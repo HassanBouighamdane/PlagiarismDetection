@@ -19,7 +19,7 @@ export default function MainForm() {
     };
   
     try {
-      await fetch('http://localhost:8080/api/form', {
+      const response =  await fetch('http://localhost:8080/api/form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -27,8 +27,8 @@ export default function MainForm() {
         body: value
       });
   
-      const response = await fetch('http://localhost:8080/get');
-      const responseData = await response;
+     // const response = await fetch('http://localhost:8080/get');
+      const responseData = await response.text();
   
       setResponseMessage(responseData);
     } catch (error) {
@@ -44,8 +44,10 @@ export default function MainForm() {
     <div className="container text-center">
       <div className="col-md-9 mx-auto">
         <label htmlFor="text">Saisir le texte :</label> <br />
-        <input id="text" name="text" rows={7} />
-        <FileInput />
+        <textarea  id="text" name="text" rows={7} columns={9} /> <br/>
+        {/* <FileInput /> */}
+        <input type='file'  ></input>
+        
         <button type="button" onClick={handleSubmit}>Comparer</button>
 
         {responseMessage && <p>{responseMessage}</p>}
