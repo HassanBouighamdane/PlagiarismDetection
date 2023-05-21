@@ -35,7 +35,7 @@ export default function FileInput() {
        
       {filePreviews.length > 0 &&
           filePreviews.map((preview, index) => (
-            <object key={index} data={preview} type={preview.type} width="20%" height="60%">
+            <object key={index} data={preview} type={preview.type} width="60%" height="500px">
                 <p>Preview could not be loaded.</p>
             </object>          ))
        }

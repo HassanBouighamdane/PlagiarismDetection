@@ -5,15 +5,19 @@ import './index.css';
 import MainForm from './components/MainForm';
 import Header from './components/Header';
 import reportWebVitals from './reportWebVitals';
+import Test from './components/Test';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div className='home'>
+     
+    <div className='container home'>
     <Header />
     <MainForm />
+   
     </div>
+    
   </React.StrictMode>
 
 

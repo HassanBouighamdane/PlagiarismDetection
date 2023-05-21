@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   justify-content: center;
+  background-color: aquamarine;
 }
 
 code {
@@ -16,6 +17,8 @@ code {
 .home {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background-color: rgb(198, 237, 237);
   align-items: center;
+  height: 100vh;
+  margin: 0;
 }

@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    width: 100 vh;
   }
   
   .header-content img {
@@ -23,6 +24,7 @@
     color: rgb(255, 0, 0);
         text-shadow: 2px 2px #ddd;
         text-align: center;
+        
   }
   
   .subheading {
@@ -31,3 +33,6 @@
     text-shadow: 1px 1px #ddd;
     text-align: center;
   }  
+  .title {
+    text-align: center;
+  }
