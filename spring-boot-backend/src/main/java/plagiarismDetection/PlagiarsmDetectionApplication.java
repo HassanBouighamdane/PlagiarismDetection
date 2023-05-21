@@ -19,21 +19,6 @@ public class PlagiarsmDetectionApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PlagiarsmDetectionApplication.class, args);
 	}
-	@GetMapping("/home")
-	public String Hello(){
-		return "Hi";
-	}
-
-
-
-	public class FormDto {
-		private String name;
-		private int age;
-
-		// Getters and setters
-
-		// Constructors
-	}
 	@Configuration
 	public class CorsConfig implements WebMvcConfigurer {
 		@Override
