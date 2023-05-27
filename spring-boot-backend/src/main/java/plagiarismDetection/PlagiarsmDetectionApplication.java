@@ -7,14 +7,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
@@ -38,24 +38,31 @@ public class PlagiarsmDetectionApplication {
 
 	@RestController
 	public class FormController {
-		/*
-		 * @PostMapping("/api/form")
-		 * public String handleFormSubmission(@RequestPart("text") String
-		 * text, @RequestPart("file") MultipartFile file) {
-		 * // Process the received text
-		 * System.out.println(text);
-		 * 
-		 * // Send results
-		 * return handleGetRequest(text);
-		 * }
-		 */
-		@PostMapping("/get")
-		public ArrayList<String> handleGetRequest(@RequestParam("text") String text, @RequestParam("files") ArrayList<MultipartFile> files) throws IOException {
-			// Process the GET request and obtain the result
-			ArrayList<String> t = convertMultipartFilesToStrings(files);
-			
 
-			return t;
+		@PostMapping("/get")
+		public ArrayList<String> handleGetRequest(@RequestParam("text") String text,
+				@RequestParam("files") ArrayList<MultipartFile> files) throws IOException {
+			ArrayList<String> rapport = new ArrayList<>();
+
+			ArrayList<String> fichNames = new ArrayList<String>();
+			for (MultipartFile file : files) {
+				String filename = file.getOriginalFilename();
+				fichNames.add(filename);
+			}
+
+			ArrayList<String> t = convertMultipartFilesToStrings(files);
+
+			compare c = new compare();
+			double percentage = c.countSimilarSentences(text, t);
+			String perString = Double.toString(percentage);
+			rapport.add(perString);
+
+			for (int i = 0; i < t.size(); i++) {
+				double taux1 = c.countSimilarSentences(text, t.get(i));
+				String rappString = fichNames.get(i) + " est :" + taux1 + "%";
+				rapport.add(rappString);
+			}
+			return rapport;
 
 		}
 
@@ -83,22 +90,6 @@ public class PlagiarsmDetectionApplication {
 			}
 
 			return fileContentBuilder.toString();
-		}
-
-		public class FormSubmissionData {
-
-			private String text;
-
-			public String getText() {
-				return text;
-			}
-
-			public void setText(String text) {
-				this.text = text;
-			}
-
-			// Add other fields as needed
-
 		}
 
 	}
