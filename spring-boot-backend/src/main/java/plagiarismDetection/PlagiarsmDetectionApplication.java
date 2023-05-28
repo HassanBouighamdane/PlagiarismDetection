@@ -59,7 +59,7 @@ public class PlagiarsmDetectionApplication {
 
 			for (int i = 0; i < t.size(); i++) {
 				double taux1 = c.countSimilarSentences(text, t.get(i));
-				String rappString = fichNames.get(i) + " est :" + taux1 + "%";
+				String rappString = fichNames.get(i) + "  : 					 " + taux1 + " % ";
 				rapport.add(rappString);
 			}
 			return rapport;
